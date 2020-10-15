@@ -1,0 +1,139 @@
+/** BODY **/
+
+html, body, #root {
+  height: 100%;
+}
+
+.body-wrapper {
+  height: 100vh;
+}
+
+.body-wrapper > .row {
+  flex: 2;
+}
+
+.body-wrapper > .row > .main-nav {
+  flex: 16.667%;
+}
+.body-wrapper > .row > .main-content {
+  flex: 83.333%;
+}
+
+/** NAV **/
+
+.main-nav {
+  background-color: #FFF;
+}
+
+.site-logo {
+  height: 3rem;
+  width: auto;
+}
+
+.site-logo > img {
+  height: 100%;
+  width: 100%;
+}
+
+.nav-icon {
+  margin-left: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.filter-icon {
+  margin-left: -0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+
+[class$="-icon"] svg {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+/** STATUS-BAR **/
+
+.status-icon {
+  height: inherit;
+  width: inherit;
+  vertical-align: text-top;
+  margin-left: 0.25em;
+}
+
+.data-label .status-icon svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+.status-value .status-icon svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+/** MAIN **/
+
+.main-content {
+  overflow: auto;
+}
+
+/** SEARCH **/
+
+.search-bar {
+  align-items: center;
+}
+
+/** DATA CARDS & CHARTS **/
+
+.cards-container .row {
+  display: flex;
+  flex-direction: row !important;
+}
+
+.data-card-container {
+  flex-grow: 1;
+}
+
+.data-card-container .data-card:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.chart-container .row .data-chart:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.chart-container {
+  flex-grow: 4;
+}
+
+.chart-container .chart-column {
+  display: flex;
+  flex-direction: column !important;
+}
+
+.chart-container .row .data-chart {
+  flex-grow: 1;
+}
+
+.data-card, .data-chart {
+  position: relative;
+}
+
+.data-card {
+  background-color: #fff;
+  padding-top: 100%;
+  width: 100%;
+}
+
+.data-card > .card-content {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.data-chart {
+  background-color: #fff;
+  padding-top: calc(50% + 0.75rem);
+}

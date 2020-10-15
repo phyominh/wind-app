@@ -25,15 +25,21 @@
     "eslint-plugin-react": "^7.21.3",
     "jest": "^26.5.2",
     "parcel-bundler": "^1.12.4",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "sass": "^1.27.0"
   },
   "dependencies": {
+    "bulma": "^0.9.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "setupFiles": ["./src/setupTests.js"],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFiles": [
+      "./src/setupTests.js"
+    ],
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
