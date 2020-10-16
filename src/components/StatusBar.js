@@ -1,8 +1,11 @@
 import React from "react";
 
+import { format } from "date-fns";
+
 import StatusBlock from "./StatusBlock.js";
 
-const StatusBar = () => {
+const StatusBar = ({ time }) => {
+  const currentTime = format(time, "h:mm a");
   const moreIcon = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <g data-name="Layer 2">
@@ -40,7 +43,7 @@ const StatusBar = () => {
     <div className="card status-bar is-radius-large">
       <div className="columns">
         <div className="column is-3">
-          <StatusBlock label={"Time"} value={"10:10 pm"} />
+          <StatusBlock label={"Time"} value={currentTime} />
         </div>
         <div className="column is-3">
           <StatusBlock
