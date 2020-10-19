@@ -1,27 +1,73 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const FilterButton = () => {
+  const options = [
+    "Live Data",
+    "Date Data",
+    "Month Data",
+    "Range Data",
+    "Seasonal Data",
+  ];
+  const [option, setOption] = useState(options[0]);
+  const [isDropdownActive, setIsDropdownActive] = useState(false);
+
+  const clickDropdown = (e) => {
+    e.stopPropagation();
+
+    setIsDropdownActive(!isDropdownActive);
+  };
+
+  const removeDropdown = () => {
+    setIsDropdownActive(false);
+  };
+
+  useEffect(() => {
+    if (isDropdownActive) {
+      addEventListener("click", removeDropdown);
+    }
+    return () => {
+      removeEventListener("click", removeDropdown);
+    };
+  }, [isDropdownActive]);
+
+  const chooseOption = (e) => {
+    e.preventDefault();
+
+    setOption(e.target.text);
+  };
+
   return (
-    <button className="button is-primary is-outlined px-medium">
-      <span className="icon filter-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <g data-name="Layer 2">
-            <g data-name="options-2">
-              <rect
-                width="24"
-                height="24"
-                transform="rotate(90 12 12)"
-                opacity="0"
-              />
-              <path d="M19 9a3 3 0 0 0-2.82 2H3a1 1 0 0 0 0 2h13.18A3 3 0 1 0 19 9zm0 4a1 1 0 1 1 1-1 1 1 0 0 1-1 1z" />
-              <path d="M3 7h1.18a3 3 0 0 0 5.64 0H21a1 1 0 0 0 0-2H9.82a3 3 0 0 0-5.64 0H3a1 1 0 0 0 0 2zm4-2a1 1 0 1 1-1 1 1 1 0 0 1 1-1z" />
-              <path d="M21 17h-7.18a3 3 0 0 0-5.64 0H3a1 1 0 0 0 0 2h5.18a3 3 0 0 0 5.64 0H21a1 1 0 0 0 0-2zm-10 2a1 1 0 1 1 1-1 1 1 0 0 1-1 1z" />
-            </g>
-          </g>
-        </svg>
-      </span>
-      Filter
-    </button>
+    <div className="control">
+      <div
+        className={isDropdownActive ? "dropdown is-active" : "dropdown"}
+        onClick={clickDropdown}
+      >
+        <div className="dropdown-trigger">
+          <button
+            className="button is-small is-primary is-outlined"
+            aria-haspopup="true"
+            aria-controls="filter-options"
+          >
+            {option}
+          </button>
+        </div>
+        <div className="dropdown-menu" id="filter-options">
+          <div className="dropdown-content">
+            {options.map((opt, index) => (
+              <a
+                className={
+                  opt == option ? "dropdown-item is-active" : "dropdown-item"
+                }
+                onClick={chooseOption}
+                key={index}
+              >
+                {opt}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

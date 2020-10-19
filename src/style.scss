@@ -101,6 +101,12 @@ $menu-list-line-height: 1.5;
 $menu-list-link-padding: 0.75rem;
 
 @import "../node_modules/bulma/sass/components/menu.sass";
+
+$dropdown-content-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.25), 0 0px 0 1px rgba($scheme-invert, 0.02);
+
+$dropdown-item-active-background-color: $primary;
+
+@import "../node_modules/bulma/sass/components/dropdown.sass";
 @import "../node_modules/bulma/sass/form/_all.sass";
 @import "../node_modules/bulma/sass/form/select.sass";
 @import "../node_modules/bulma/sass/helpers/spacing.sass";
@@ -156,6 +162,10 @@ $menu-list-link-padding: 0.75rem;
   font-size: $size-2;
   height: 4.5rem;
   line-height: 4.5rem;
+}
+
+.search-bar .dropdown-item {
+  font-size: $size-7;
 }
 
 // data-cards
