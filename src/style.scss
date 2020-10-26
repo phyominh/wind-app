@@ -168,6 +168,12 @@ $dropdown-item-active-background-color: $primary;
   font-size: $size-7;
 }
 
+.search-bar .live-data {
+  color: $black;
+  font-size: $size-1;
+  line-height: 4.5rem;
+}
+
 // data-cards
 
 .data-card {

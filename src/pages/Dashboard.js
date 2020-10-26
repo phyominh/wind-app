@@ -19,7 +19,7 @@ const Dashboard = () => {
         <StatusBar time={currentDateTime} />
       </div>
       <div className="mx-small mb-small">
-        <WindData />
+        <WindData time={currentDateTime} />
       </div>
     </div>
   );

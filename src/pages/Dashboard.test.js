@@ -1,17 +1,25 @@
 import React from "react";
 import { act } from "react-dom/test-utils";
-import { addHours, addMinutes, addSeconds, format, getSeconds } from "date-fns";
+import { Provider } from "react-redux";
+import { addSeconds, format, getSeconds } from "date-fns";
 import { mount } from "enzyme";
+import configureStore from "redux-mock-store";
 
 import Dashboard from "./Dashboard.js";
 
 describe("Dashboard", () => {
+  const mockStore = configureStore();
   const timeFormat = "h:mm a";
 
-  let dashboard, testDate;
+  let dashboard, store, testDate;
 
   beforeEach(() => {
-    dashboard = mount(<Dashboard />);
+    store = mockStore({});
+    dashboard = mount(
+      <Provider store={store}>
+        <Dashboard />
+      </Provider>
+    );
     testDate = new Date();
     jest.useFakeTimers("modern");
   });

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const StatusBlock = ({ label, labelIcon, value, valueIcon }) => {
   return (
@@ -17,6 +18,13 @@ const StatusBlock = ({ label, labelIcon, value, valueIcon }) => {
       </p>
     </div>
   );
+};
+
+StatusBlock.propTypes = {
+  label: PropTypes.string.isRequired,
+  labelIcon: PropTypes.node,
+  value: PropTypes.string.isRequired,
+  valueIcon: PropTypes.node,
 };
 
 export default StatusBlock;

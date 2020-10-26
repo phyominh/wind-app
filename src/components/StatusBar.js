@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { format } from "date-fns";
 
@@ -69,6 +70,10 @@ const StatusBar = ({ time }) => {
       </div>
     </div>
   );
+};
+
+StatusBar.propTypes = {
+  time: PropTypes.instanceOf(Date),
 };
 
 export default StatusBar;

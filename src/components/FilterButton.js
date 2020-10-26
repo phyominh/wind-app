@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const FilterButton = () => {
-  const options = [
-    "Live Data",
-    "Date Data",
-    "Month Data",
-    "Range Data",
-    "Seasonal Data",
-  ];
-  const [option, setOption] = useState(options[0]);
+import { chooseOption } from "../actions.js";
+
+export const FilterButton = ({ items, option, dispatch }) => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
   const clickDropdown = (e) => {
@@ -30,10 +26,10 @@ const FilterButton = () => {
     };
   }, [isDropdownActive]);
 
-  const chooseOption = (e) => {
+  const selectOption = (e) => {
     e.preventDefault();
 
-    setOption(e.target.text);
+    dispatch(chooseOption(e.target.text));
   };
 
   return (
@@ -51,24 +47,36 @@ const FilterButton = () => {
             {option}
           </button>
         </div>
-        <div className="dropdown-menu" id="filter-options">
-          <div className="dropdown-content">
-            {options.map((opt, index) => (
-              <a
-                className={
-                  opt == option ? "dropdown-item is-active" : "dropdown-item"
-                }
-                onClick={chooseOption}
-                key={index}
-              >
-                {opt}
-              </a>
-            ))}
+        {isDropdownActive ? (
+          <div className="dropdown-menu" id="filter-options">
+            <div className="dropdown-content">
+              {items.map((opt) => (
+                <a
+                  className={
+                    opt == option ? "dropdown-item is-active" : "dropdown-item"
+                  }
+                  onClick={selectOption}
+                  key={opt}
+                >
+                  {opt}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );
 };
 
-export default FilterButton;
+FilterButton.propTypes = {
+  items: PropTypes.array,
+  option: PropTypes.string,
+  dispatch: PropTypes.func,
+};
+
+const mapState = (state) => {
+  return { option: state.option };
+};
+
+export default connect(mapState)(FilterButton);
