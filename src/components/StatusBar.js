@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-
 import { format } from "date-fns";
 
 import StatusBlock from "./StatusBlock.js";
 
-const StatusBar = ({ time }) => {
-  const currentTime = format(time, "h:mm a");
+const StatusBar = () => {
+  const timeFormat = "h:mm a";
+  const [currentTime, setCurrentTime] = useState(
+    format(new Date(), timeFormat)
+  );
+
+  useEffect(() => {
+    const tick = setInterval(() => {
+      const time = format(new Date(), timeFormat);
+      if (time !== currentTime) setCurrentTime(time);
+    });
+
+    return () => clearInterval(tick);
+  });
+
   const moreIcon = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <g data-name="Layer 2">
@@ -23,6 +35,7 @@ const StatusBar = ({ time }) => {
       </g>
     </svg>
   );
+
   const infoIcon = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <g data-name="Layer 2">
@@ -40,6 +53,7 @@ const StatusBar = ({ time }) => {
       </g>
     </svg>
   );
+
   return (
     <div className="card status-bar is-radius-large">
       <div className="columns">

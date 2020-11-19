@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import DataCard from "./DataCard.js";
 import FilterBlock from "./FilterBlock.js";
 
-const WindData = ({ time }) => {
+const WindData = () => {
   return (
     <>
-      <FilterBlock time={time} />
+      <FilterBlock />
       <div className="cards-container">
         <div className="row">
           <div className="data-card-container mb-small mr-small">

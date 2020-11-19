@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addDays, format } from "date-fns";
 
+import CurrentDate from "./CurrentDate.js";
 import DateInput from "./DateInput.js";
 import FilterButton from "./FilterButton.js";
 import options from "./FilterOptions.js";
 
-export const FilterBlock = ({ time, option, datesFromInputs }) => {
-  const currentDate = format(time, "MMM d, yyyy");
-  const inputFormat = "yyyy-M-d";
+export const inputFormat = "yyyy-M-d";
+
+export const FilterBlock = ({ option, datesFromInputs }) => {
   const sliderConfig = {
     year: {
       format: "YYYY",
@@ -64,7 +65,7 @@ export const FilterBlock = ({ time, option, datesFromInputs }) => {
       {(() => {
         switch (option) {
           case options[0]:
-            return <p className="live-data">{currentDate}</p>;
+            return <CurrentDate />;
           case options[3]:
             return (
               <div className="input-group">
@@ -135,9 +136,8 @@ FilterBlock.propTypes = {
   datesFromInputs: PropTypes.array,
 };
 
-const mapState = (state, ownProps) => {
+const mapState = (state) => {
   return {
-    time: ownProps.time,
     option: state.option,
     datesFromInputs: state.datesFromInputs,
   };
