@@ -8,7 +8,7 @@ import App from "./App.js";
 
 describe("App", () => {
   const mockStore = configureStore();
-  const store = mockStore({});
+  const store = mockStore({ option: "", datesFromInputs: [] });
   const app = shallow(
     <Provider store={store}>
       <App />

@@ -1,25 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { format } from "date-fns";
 
 import DataCard from "./DataCard.js";
-import DateTimeInput from "./DateTimeInput.js";
-import FilterButton from "./FilterButton.js";
-import options from "./FilterOptions.js";
+import FilterBlock from "./FilterBlock.js";
 
-export const WindData = ({ time, option }) => {
-  const currentDate = format(time, "MMM d, yyyy");
+const WindData = ({ time }) => {
   return (
     <>
-      <div className="search-bar mb-small">
-        <FilterButton items={options} />
-        {option == options[0] ? (
-          <p className="live-data">{currentDate}</p>
-        ) : (
-          <DateTimeInput type={option} />
-        )}
-      </div>
+      <FilterBlock time={time} />
       <div className="cards-container">
         <div className="row">
           <div className="data-card-container mb-small mr-small">
@@ -45,11 +33,6 @@ export const WindData = ({ time, option }) => {
 
 WindData.propTypes = {
   time: PropTypes.instanceOf(Date),
-  option: PropTypes.string,
 };
 
-const mapState = (state, ownProps) => {
-  return { time: ownProps.time, option: state.option };
-};
-
-export default connect(mapState)(WindData);
+export default WindData;

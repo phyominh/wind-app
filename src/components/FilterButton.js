@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { chooseOption } from "../actions.js";
+import { chooseOption, resetDate } from "../actions.js";
 
 export const FilterButton = ({ items, option, dispatch }) => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
-  const clickDropdown = (e) => {
-    e.stopPropagation();
-
+  const clickDropdown = () => {
     setIsDropdownActive(!isDropdownActive);
   };
 
@@ -30,6 +28,7 @@ export const FilterButton = ({ items, option, dispatch }) => {
     e.preventDefault();
 
     dispatch(chooseOption(e.target.text));
+    dispatch(resetDate());
   };
 
   return (
