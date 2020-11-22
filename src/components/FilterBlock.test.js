@@ -13,7 +13,7 @@ describe("🔎 FilterBlock without Redux", () => {
     expect(filterBlock.find(CurrentDate)).toBeTruthy();
   });
 
-  test("renders DateTimeInput for other options", () => {
+  test("renders DateInput for other options", () => {
     const filterBlock = shallow(
       <BareFilterBlock option={"Other option"} datesFromInputs={[]} />
     );
