@@ -24,10 +24,10 @@ export const FilterButton = ({ items, option, dispatch }) => {
     };
   }, [isDropdownActive]);
 
-  const selectOption = (e) => {
+  const selectOption = (e, item) => {
     e.preventDefault();
 
-    dispatch(chooseOption(e.target.text));
+    dispatch(chooseOption(item));
     dispatch(resetDate());
   };
 
@@ -49,15 +49,17 @@ export const FilterButton = ({ items, option, dispatch }) => {
         {isDropdownActive ? (
           <div className="dropdown-menu" id="filter-options">
             <div className="dropdown-content">
-              {items.map((opt) => (
+              {Object.keys(items).map((key) => (
                 <a
                   className={
-                    opt == option ? "dropdown-item is-active" : "dropdown-item"
+                    items[key] == option
+                      ? "dropdown-item is-active"
+                      : "dropdown-item"
                   }
-                  onClick={selectOption}
-                  key={opt}
+                  onClick={(e) => selectOption(e, items[key])}
+                  key={key}
                 >
-                  {opt}
+                  {items[key]}
                 </a>
               ))}
             </div>
@@ -69,7 +71,7 @@ export const FilterButton = ({ items, option, dispatch }) => {
 };
 
 FilterButton.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.object,
   option: PropTypes.string,
   dispatch: PropTypes.func,
 };

@@ -5,7 +5,7 @@ import { parse, subDays } from "date-fns";
 import DatePicker from "../utils/react-mobile-datepicker.min.js";
 
 import { confirmDate, clearIndexDate, resetDate } from "../actions.js";
-import options from "./FilterOptions.js";
+import { options } from "../utils/appUtils.js";
 
 const DateDialog = ({
   selection,
@@ -20,7 +20,7 @@ const DateDialog = ({
   let parsedMaxDate = parse(maxDate, "yyyy-M-d", new Date());
   // take one day off from the first input
   // so that range selection has at least one day difference
-  if (!inputValue && selection == options[3] && inputIndex == 0) {
+  if (!inputValue && selection == options.RANGE_DATA && inputIndex == 0) {
     parsedMaxDate = subDays(parsedMaxDate, 1);
   }
 

@@ -8,12 +8,12 @@ import FilterButton, {
 } from "./FilterButton.js";
 
 describe("🎛️ FilterButton without Redux", () => {
-  const mockItems = ["a", "b", "c"];
+  const mockItems = { a: "a", b: "b" };
   let filterButton;
 
   beforeEach(() => {
     filterButton = shallow(
-      <BareFilterButton items={mockItems} option={mockItems[0]} />
+      <BareFilterButton items={mockItems} option={mockItems.a} />
     );
   });
 
@@ -26,7 +26,7 @@ describe("🎛️ FilterButton without Redux", () => {
       .find(".dropdown")
       .simulate("click", { stopPropagation: () => {} });
     expect(filterButton.find("#filter-options .dropdown-item")).toHaveLength(
-      mockItems.length
+      Object.keys(mockItems).length
     );
     expect(
       filterButton

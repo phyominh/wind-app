@@ -6,7 +6,7 @@ import { addDays, format } from "date-fns";
 import CurrentDate from "./CurrentDate.js";
 import DateInput from "./DateInput.js";
 import FilterButton from "./FilterButton.js";
-import options from "./FilterOptions.js";
+import { options } from "../utils/appUtils.js";
 
 export const inputFormat = "yyyy-M-d";
 
@@ -64,9 +64,9 @@ export const FilterBlock = ({ option, datesFromInputs }) => {
       <FilterButton items={options} />
       {(() => {
         switch (option) {
-          case options[0]:
+          case options.LIVE_DATA:
             return <CurrentDate />;
-          case options[3]:
+          case options.RANGE_DATA:
             return (
               <div className="input-group">
                 <div className="is-inline-block">

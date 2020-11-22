@@ -6,9 +6,9 @@ import {
   CLEAR_INDEX_DATE,
   RESET_DATE,
 } from "./actions.js";
-import options from "./components/FilterOptions.js";
+import { options } from "./utils/appUtils.js";
 
-const optionReducer = (state = options[0], { type, option }) => {
+const optionReducer = (state = options.LIVE_DATA, { type, option }) => {
   switch (type) {
     case CHOOSE_OPTION:
       return option;
